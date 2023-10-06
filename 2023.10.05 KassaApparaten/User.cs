@@ -14,6 +14,7 @@ namespace _2023._10._05_KassaApparaten
         public User(int budget, int creditcard = 5000)
         {
             this.Budget = budget;
+            this.Budget = creditcard;
         }
        
     }

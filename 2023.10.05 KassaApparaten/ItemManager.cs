@@ -15,7 +15,7 @@ namespace _2023._10._05_KassaApparaten
         Item currentItem = null;
 
 
-        //För att lägga till standard-varor:
+        //För att lägga till standard-varor i början av programmet:
         public void RunItems()
         {
             items.Add(new Item("Broccoli", 15));
@@ -23,9 +23,11 @@ namespace _2023._10._05_KassaApparaten
             items.Add(new Item("Ris", 24));
             items.Add(new Item("Snus", 36));
             items.Add(new Item("Sprit", 200));
+            items.Add(new Item("Rabbatkupong 20%"));
+
         }
 
-        //För att skriva ut varan:
+        //För att skriva ut tillgängliga varor:
         public void PrintList()
         {
             Console.WriteLine("Tillgängliga varor: \n");
@@ -36,6 +38,17 @@ namespace _2023._10._05_KassaApparaten
        
         }
 
+        public int DisplayCost()
+        {
+            int sum = 0;
+            for (int i = 0; i < shoppingCart.Count; i++)
+            {
+                sum += shoppingCart[i].getPrice();
+            }
+            return sum;
+        }
+
+        //För att visa kundkorgen:
         public void DisplayShopingCart()
         {
             int sum = 0;
@@ -48,26 +61,33 @@ namespace _2023._10._05_KassaApparaten
             Console.WriteLine($"\nTotalt kostnad: {sum} SEK\n");
         }
 
-        //Denna behöver en failsafe ifall varan inte finns, eller om en stavat fel.
+        //För att lägga till varor i kundkorgen.
+        //(Denna behöver en failsafe ifall varan inte finns, eller om en stavat fel)
         public void AddToShoppingCart()
         {
-
-            PrintList();
-            Console.Write("\nVilken vara vill du lägga till i kundvagnen? \n");
-            string selection = Console.ReadLine();
-            foreach (Item item in items)
+            bool status = false;
+            while (!status)
             {
-                if (selection == item.getName())
+                PrintList();
+                Console.Write("\nVilken vara vill du lägga till i kundvagnen? \n");
+                string selection = Console.ReadLine();
+                foreach (Item item in items)
                 {
-                    shoppingCart.Add(item);
-                    Console.Clear();
-                    Console.WriteLine($"*** {selection} har lagts till i Kundvagnen ***\n");
+                    if (selection == item.getName())
+                    {
+                        shoppingCart.Add(item);
+                        Console.Clear();
+                        Console.WriteLine($"*** {selection} har lagts till i Kundvagnen ***\n");
+                        status = true;
+                    }
                 }
             }
         }
 
         //Kolla upp insertion sort - En algoritm som vi skulle kunna programmera för att sortera
 
+
+        //Ej aktiv funktion. Används om programmete byggs ut med Employee-klass.
         public void RegisterNewProduct()
         {
             Console.WriteLine("Skriv produktnamnet: ");

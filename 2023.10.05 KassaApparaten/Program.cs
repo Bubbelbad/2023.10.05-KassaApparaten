@@ -5,11 +5,7 @@
         static void Main(string[] args)
         {
             ShopManager shopManager = new ShopManager();
-
-            shopManager.AddInventory();
-            shopManager.AddShoppingCart();
             shopManager.Menu();
-
 
         }
     }

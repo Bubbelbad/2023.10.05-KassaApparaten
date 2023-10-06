@@ -11,13 +11,21 @@ namespace _2023._10._05_KassaApparaten
     {
         protected string Name { get; set; }
         public int Price { get; set; }
-
-
+        public double Rabatt {  get; set; }
+        public string visa { get; set; }
 
         public Item(string name, int price)
         {
             this.Name = name;
             this.Price = price;
+        }
+
+        public Item(string name)
+        {
+            this.Name = name;
+            this.Price = 0;
+            this.Rabatt = 0.2;
+
         }
 
         public string getName()
