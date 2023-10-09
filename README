@@ -1,11 +1,9 @@
-# 2023.10.03 - BankomatApp
+# 2023.10.03 - KassaApparaten
  
-Mitt första skolprojekt - en enkel applikation för att simulera en bankomat där en ska kunna ta ut eller sätta in pengar.
+Mitt andra skolprojekt: i KassaApparaten får användaren handla varor efter en meny som lopas av ShopManager.
 
-Användaren får mata in hur många av varje valör som skall sättas in och programmet beräknar hur mycket det nya saldot blir. 
+Mitt första projekt med +1 klasser som interagerar med varandra på ett någorlunda strukturerat sätt.
 
-Användaren ska även kunna ta ut pengar om tillräckligt saldo finns tillgängligt och får då veta hur många av varje valör som betalas ut. 
+Största utmaningen var att hålla reda på funktionerna som ItemManager och ShopManager använder!
 
-Satte in en extra funtkion där en kan byta pinkod, även om den nya inte kommer till användning i detta program. 
-
-Blev nöjd med att använda en klass som innehöll vissa funktioner, även om jag i efterhand inser att det blev för mycket kod i main(). 
+Samt att spara de olika objekten i rätt listor. 
