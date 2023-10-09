@@ -10,21 +10,23 @@ namespace _2023._10._05_KassaApparaten
     internal class Item
     {
         protected string Name { get; set; }
-        public int Price { get; set; }
-        public double Rabatt {  get; set; }
+        public double Price { get; set; }
+        public int Id {  get; set; }
         public string visa { get; set; }
 
-        public Item(string name, int price)
+        public static int nextId = 1;
+
+        public Item(string name, double price)
         {
             this.Name = name;
             this.Price = price;
+            this.Id = nextId++;
         }
 
         public Item(string name)
         {
             this.Name = name;
-            this.Price = 0;
-            this.Rabatt = 0.2;
+            this.Id = nextId++;
 
         }
 
@@ -33,7 +35,7 @@ namespace _2023._10._05_KassaApparaten
             return this.Name;
         }
 
-        public int getPrice()
+        public double getPrice()
         {
             return this.Price;
         }

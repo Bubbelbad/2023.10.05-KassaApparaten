@@ -11,38 +11,46 @@ namespace _2023._10._05_KassaApparaten
 
         //Den här klassen innehåller funtkioner som tar hand om interaktionen mellan klasserna ItemManager och User.
         //Funtioner som meny(), betala() osv..
-
         User user = new User(300);
         ItemManager itemManager = new ItemManager();
 
 
 
-        public void Menu()
+        //I samband med kontruktorn lägger jag till standardvarorna i inventariet och visar detta för kund när programmet startar.
+        public ShopManager()
         {
             AddInventory();
-            AddShoppingCart();
+            AddToShoppingCart();
+        }
+
+
+
+        //Meny för kunden att navigera.
+        public void Menu()
+        {
             bool menu = true;
             while (true)
             {
                 Console.WriteLine("Vad vill du göra?\n\n" +
-                              "Fortsätt handla            [1]\n" +
-                              "Visa kundvagn              [2]\n" +
-                              "Gå vidare till betalning   [3]\n" +
-                              "Avsluta (utan betalning)   [4]");
+                                  "Fortsätt handla            [1]\n" +
+                                  "Visa kundvagn              [2]\n" +
+                                  "Gå vidare till betalning   [3]\n" +
+                                  "Avsluta (utan betalning)   [4]");
+
                 string answer = Console.ReadLine();
                 Console.Clear();
                 switch (answer)
                 {
                     case "1":
-                        AddShoppingCart();
+                        AddToShoppingCart();
                         break;
                     case "2":
-                        RunDisPlayShoppingCart();
+                        DisPlayShoppingCart();
                         break;
                     case "3":
                         Payment();
                         menu = false;
-                        break;
+                        return;
                     case "4":
                         System.Environment.Exit(0);
                         break;
@@ -55,10 +63,13 @@ namespace _2023._10._05_KassaApparaten
 
 
 
-        //Hur man betalar och vad som händer. 
+
+
+        //Hur man betalar, val mellan kontakt och kredit. 
+        //Avslutar efter betalning eller efter att en har för lite pengar.
         public void Payment()
         {
-            RunDisplayCost();
+            DisplayCost();
 
             Console.WriteLine("Hur vill du betala?\n" +
                               "\nBetala med kontanter         [1]" +
@@ -68,93 +79,67 @@ namespace _2023._10._05_KassaApparaten
             switch (answer)
             {
                 case "1":
-                    if (RunDisplayCost() < user.Budget)
+                    if (DisplayCost() < user.Budget)
                     {
+                        
                         Console.Clear();
-                        Console.WriteLine("Du har råd att betala!\n");
-                        RunDisPlayShoppingCart();
-                        CheckOutDiscount();
-
+                        double sum = DisplayCost();
+                        Console.WriteLine($"Du har {Math.Round(user.Budget - sum, 2)} SEK kvar.\n");
                         Console.WriteLine("\n*** Välkommen åter!*** \n\n");
                     }
                     else
                     {
-                        Console.WriteLine("Du har inte råd att handla. \n(FELMEDDELANDE)\n\n");
+                        Console.Clear();
+                        Console.WriteLine("Du har för lite pengar. \n*** (FELMEDDELANDE) ***\n\n");
                     }
                     break;
 
                 case "2":
-                    if (RunDisplayCost() < user.Creditcard)
+                    if (DisplayCost() < user.Creditcard)
                     {
                         Console.Clear();
-                        Console.WriteLine("Du har råd att betala! " +
-                                          " \n*** Välkommen åter!*** \n\n");
+                        double sum = DisplayCost();
+                        Console.WriteLine($"Du har {Math.Round(user.Creditcard - sum, 2)} SEK kvar.\n");
+                        Console.WriteLine(" \n*** Välkommen åter!*** \n\n");
                     }
                     else
                     {
-                        Console.WriteLine("Du har inte råd att handla. \n(FELMEDDELANDE)\n\n");
+                        Console.Clear();
+                        Console.WriteLine("Du har för lite pengar. \n*** (FELMEDDELANDE) ***\n\n");
                     }
                     break;
 
                 default:
-                    Console.WriteLine("Vänligen knappa in 1 eller 2");
+                    Console.WriteLine("Vänligen knappa in 1 eller 2");   
                     break;
             }
         }
 
 
 
-        //Checkout
-        public void CheckOutDiscount()
-        {
 
-            Console.WriteLine("Rabattavdrag 20%\n");
-            int sum = RunDisplayCost();
-            double discount = 0.2;
-        }
-
-
-
-        //funktioner från ItemManager: 
+        
+        //funktioner hämtade från ItemManager: 
         public void AddInventory()
         {
             itemManager.RunItems();
         }
 
-        public void AddShoppingCart()
+        public void AddToShoppingCart()
         {
             itemManager.AddToShoppingCart();
         }
 
-        public void RunDisPlayShoppingCart()
+        public double DisPlayShoppingCart()
         {
-            itemManager.DisplayShopingCart();
-        }
-
-        public int RunDisplayCost()
-        {
-            int sum = itemManager.DisplayCost();
+            double sum = itemManager.DisplayShopingCart();
             return sum;
         }
 
-
-        //Om jag vill lägga till nya saker så kallar ShopManager på RegisterProduct:
-        //Denna funktion är bara till för anställda, men klassen finns ännu inte i programmet.
-        public void NewProduct()
+        public double DisplayCost()
         {
-            itemManager.RegisterNewProduct();
+            double sum = itemManager.DisplayCost();
+            return sum;
         }
-
-
-
-
-
-        //Utanför funktioner kan vi bara deklarera variabler. 
-
-
-        //Skapa runfunktionen här
-
-
-
     }
 }
