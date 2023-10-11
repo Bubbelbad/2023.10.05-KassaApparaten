@@ -12,7 +12,6 @@ namespace _2023._10._05_KassaApparaten
         protected string Name { get; set; }
         public double Price { get; set; }
         public int Id {  get; set; }
-        public string visa { get; set; }
 
         public static int nextId = 1;
 

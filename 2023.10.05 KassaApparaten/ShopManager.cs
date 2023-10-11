@@ -10,7 +10,7 @@ namespace _2023._10._05_KassaApparaten
     {
 
         //Den här klassen innehåller funtkioner som tar hand om interaktionen mellan klasserna ItemManager och User.
-        //Funtioner som meny(), betala() osv..
+        //Funtioner som meny, lägga till i kundkorgen, betala osv..
         User user = new User(300);
         ItemManager itemManager = new ItemManager();
 
@@ -21,42 +21,46 @@ namespace _2023._10._05_KassaApparaten
         {
             AddInventory();
             AddToShoppingCart();
+            Menu();
         }
 
 
 
-        //Meny för kunden att navigera.
+        //Meny för kunden att navigera mellan de olika valen: 
         public void Menu()
         {
             bool menu = true;
-            while (true)
+            while (menu)
             {
                 Console.WriteLine("Vad vill du göra?\n\n" +
                                   "Fortsätt handla            [1]\n" +
                                   "Visa kundvagn              [2]\n" +
                                   "Gå vidare till betalning   [3]\n" +
                                   "Avsluta (utan betalning)   [4]");
-
-                string answer = Console.ReadLine();
-                Console.Clear();
-                switch (answer)
+                try
                 {
-                    case "1":
-                        AddToShoppingCart();
-                        break;
-                    case "2":
-                        DisPlayShoppingCart();
-                        break;
-                    case "3":
-                        Payment();
-                        menu = false;
-                        return;
-                    case "4":
-                        System.Environment.Exit(0);
-                        break;
-                    default:
-                        Console.WriteLine("Vänligen välj en siffra mellan 1-4\n");
-                        break;
+                    int answer = int.Parse(Console.ReadLine());
+                    Console.Clear();
+                    switch (answer)
+                    {
+                        case 1:
+                            AddToShoppingCart();
+                            break;
+                        case 2:
+                            DisPlayShoppingCart();
+                            break;
+                        case 3:
+                            Payment();
+                            menu = false;
+                            return;
+                        case 4:
+                            System.Environment.Exit(0);
+                            break;
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("Vänligen skriv in en siffra mellan 1 - 3.");
                 }
             }
         }

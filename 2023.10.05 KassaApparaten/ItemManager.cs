@@ -12,7 +12,7 @@ namespace _2023._10._05_KassaApparaten
 
         List<Item> items = new List<Item>();
         List<Item> shoppingCart = new List<Item>();
-        Item currentItem = null;
+
 
 
         //För att lägga till standard-varor i början av programmet:
@@ -28,6 +28,8 @@ namespace _2023._10._05_KassaApparaten
 
 
 
+
+
         //För att skriva ut tillgängliga varor i sortimentet:
         public void PrintList()
         {
@@ -37,6 +39,7 @@ namespace _2023._10._05_KassaApparaten
                 Console.WriteLine($"-[{items[i].Id}] {items[i].getName()}, {items[i].getPrice()} SEK");
             }
         }
+
 
 
 
@@ -68,6 +71,7 @@ namespace _2023._10._05_KassaApparaten
 
 
 
+
         //För att visa kundkorgen: 
         public double DisplayShopingCart()
         {
@@ -85,6 +89,7 @@ namespace _2023._10._05_KassaApparaten
 
 
 
+
         //För att lägga till varor i kundkorgen.
         public void AddToShoppingCart()
         {
@@ -93,19 +98,27 @@ namespace _2023._10._05_KassaApparaten
             {
                 PrintList();
                 Console.Write("\nVilken vara vill du lägga till i kundvagnen? \n");
-                int selection = Convert.ToInt32(Console.ReadLine());
-                foreach (Item item in items)
+
+                try
                 {
-                    if (selection == item.Id)
+                    int selection = Convert.ToInt32(Console.ReadLine());
+                    foreach (Item item in items)
                     {
-                        shoppingCart.Add(item);
-                        Console.Clear();
-                        Console.WriteLine($"*** {selection} har lagts till i Kundvagnen ***\n");
-                        status = true;
+                        if (selection == item.Id)
+                        {
+                            shoppingCart.Add(item);
+                            Console.Clear();
+                            Console.WriteLine($"*** {selection} har lagts till i Kundvagnen ***\n");
+                            status = true;
+                        }
                     }
+                }
+
+                catch
+                {
+                    Console.WriteLine("Vänligen skriv in en siffra från menyn.");
                 }
             }
         }
-      
     }
 }
