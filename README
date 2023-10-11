@@ -1,0 +1,9 @@
+# 2023.10.03 - KassaApparaten
+ 
+Mitt andra skolprojekt: i KassaApparaten får användaren handla varor efter en meny som lopas av ShopManager.
+
+Mitt första projekt med +1 klasser som interagerar med varandra på ett någorlunda strukturerat sätt.
+
+Största utmaningen var att hålla reda på funktionerna som ItemManager och ShopManager använder!
+
+Samt att spara de olika objekten i rätt listor. 
