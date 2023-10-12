@@ -64,8 +64,8 @@ namespace _2023._10._05_KassaApparaten
             {
                 sum = sum * discount;
             }
-            Console.WriteLine($"\nTotal kostnad: {sum} SEK\n");
-            return sum;
+            Console.WriteLine($"\nTotal kostnad: {Math.Round(sum, 2)} SEK\n");
+            return Math.Round(sum, 2);
         }
 
 
@@ -82,8 +82,8 @@ namespace _2023._10._05_KassaApparaten
                 Console.WriteLine($"-{shoppingCart[i].getName()}, {shoppingCart[i].getPrice()} SEK");
                 sum += shoppingCart[i].getPrice();
             }
-            Console.WriteLine($"\nTotalt kostnad: {sum} SEK\n");
-            return sum;
+            Console.WriteLine($"\nTotalt kostnad: {Math.Round(sum, 2)} SEK\n");
+            return Math.Round(sum, 2);
         }
 
 

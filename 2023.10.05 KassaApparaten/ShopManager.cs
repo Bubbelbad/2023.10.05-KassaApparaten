@@ -76,19 +76,19 @@ namespace _2023._10._05_KassaApparaten
             DisplayCost();
 
             Console.WriteLine("Hur vill du betala?\n" +
-                              "\nBetala med kontanter         [1]" +
-                              "\nBetala med kreditkort        [2]");
+                              $"\nBetala med kontanter         [1]  Saldo: {user.getBudget()}" + 
+                              $"\nBetala med kreditkort        [2]  Saldo: {user.getCreditcard()}");
 
             string answer = Console.ReadLine();
             switch (answer)
             {
                 case "1":
-                    if (DisplayCost() < user.Budget)
+                    if (DisplayCost() < user.getBudget())
                     {
                         
                         Console.Clear();
                         double sum = DisplayCost();
-                        Console.WriteLine($"Du har {Math.Round(user.Budget - sum, 2)} SEK kvar.\n");
+                        Console.WriteLine($"Du har {Math.Round(user.getBudget() - sum, 2)} SEK kvar.\n");
                         Console.WriteLine("\n*** Välkommen åter!*** \n\n");
                     }
                     else
@@ -99,11 +99,11 @@ namespace _2023._10._05_KassaApparaten
                     break;
 
                 case "2":
-                    if (DisplayCost() < user.Creditcard)
+                    if (DisplayCost() < user.getCreditcard())
                     {
                         Console.Clear();
                         double sum = DisplayCost();
-                        Console.WriteLine($"Du har {Math.Round(user.Creditcard - sum, 2)} SEK kvar.\n");
+                        Console.WriteLine($"Du har {Math.Round(user.getCreditcard() - sum, 2)} SEK kvar.\n");
                         Console.WriteLine(" \n*** Välkommen åter!*** \n\n");
                     }
                     else
@@ -118,6 +118,7 @@ namespace _2023._10._05_KassaApparaten
                     break;
             }
         }
+
 
 
 
@@ -137,13 +138,13 @@ namespace _2023._10._05_KassaApparaten
         public double DisPlayShoppingCart()
         {
             double sum = itemManager.DisplayShopingCart();
-            return sum;
+            return Math.Round(sum, 2);
         }
 
         public double DisplayCost()
         {
             double sum = itemManager.DisplayCost();
-            return sum;
+            return Math.Round(sum, 2);
         }
     }
 }

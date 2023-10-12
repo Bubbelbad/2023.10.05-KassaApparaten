@@ -8,14 +8,21 @@ namespace _2023._10._05_KassaApparaten
 {
     internal class User 
     {
-        public double Budget {  get; set; }
-        public double Creditcard { get; set; }
+        protected double Budget {  get; private set; }
+        protected double Creditcard { get; private set; }
 
         public User(double budget, double creditcard = 5000)
         {
             this.Budget = budget;
             this.Creditcard = creditcard;
         }
+
+        public double getBudget() 
+        { return this.Budget; }
+
+        public double getCreditcard()
+        { return this.Creditcard;  }
+
        
     }
 }
